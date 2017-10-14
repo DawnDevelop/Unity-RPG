@@ -333,7 +333,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 447834}
-  - component: {fileID: 9504796}
   m_Layer: 0
   m_Name: Archer_prefab
   m_TagString: Untagged
@@ -411,6 +410,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 410644}
+  - component: {fileID: 114524838389379138}
   m_Layer: 0
   m_Name: Bip01 L Hand
   m_TagString: Untagged
@@ -1518,7 +1518,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.536, y: -0.398, z: 0.399}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 466392}
@@ -2723,23 +2723,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120920}
   m_Mesh: {fileID: 4300006, guid: 23ce0c9ca6ae68d42bf0d9a288a77f43, type: 3}
---- !u!95 &9504796
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 124002}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 23ce0c9ca6ae68d42bf0d9a288a77f43, type: 3}
-  m_Controller: {fileID: 9100000, guid: 7488e5388f433284aba304c0e6b9067f, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!137 &13717218
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2879,3 +2862,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124002}
   m_IsPrefabParent: 1
+--- !u!114 &114524838389379138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfd87dcd0e5d7e4891439ff70b83419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
