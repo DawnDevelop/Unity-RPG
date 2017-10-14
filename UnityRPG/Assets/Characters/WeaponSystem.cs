@@ -77,9 +77,7 @@ namespace RPG.Characters
 
         private float CalculateDamage()
         {
-
             return baseDamage + currentWeaponConfig.GetAdditionalDamage();
-
         }
 
 
