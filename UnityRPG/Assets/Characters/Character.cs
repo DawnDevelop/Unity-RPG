@@ -88,6 +88,11 @@ namespace RPG.Characters
             }
         }
 
+        public AnimatorOverrideController GetOverrideController()
+        {
+            return animatorOverrideController;
+        }
+
         public void kill()
         {
             isAlive = false;

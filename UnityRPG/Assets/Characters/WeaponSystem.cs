@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace RPG.Weapons 
+namespace RPG.Characters 
 {
     public class WeaponSystem : MonoBehaviour
     {
@@ -16,6 +16,11 @@ namespace RPG.Weapons
         GameObject target;
         GameObject weaponObject;
         Animator animator;
+        Character character;
+        float lastHitTime;
+
+        const string ATTACK_TRIGGER = "Attack";
+        const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
         private void Start()
         {
@@ -29,7 +34,6 @@ namespace RPG.Weapons
             target = targetToAttack;
             print("attacking: " + targetToAttack);
             //TODO Use coroutine
-
         }
 
         //Move to weapon system
@@ -73,23 +77,16 @@ namespace RPG.Weapons
 
         private float CalculateDamage()
         {
-            bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) <= criticalHitChance;
-            float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
-            if (isCriticalHit)
-            {
-                criticalHitParticle.Play();
-                return damageBeforeCritical * criticalHitMultiplier;
-            }
-            else
-            {
-                return damageBeforeCritical;
-            }
+
+            return baseDamage + currentWeaponConfig.GetAdditionalDamage();
+
         }
 
 
         private void SetAttackAnimation()
         {
             animator = GetComponent<Animator>();
+            var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
         }

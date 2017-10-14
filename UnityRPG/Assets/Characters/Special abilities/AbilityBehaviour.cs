@@ -11,6 +11,7 @@ namespace RPG.Characters
         protected PlayerMovement player;
         protected AudioSource audioSource = null;
         protected AnimatorOverrideController animController;
+        protected Character character;
 
         const float PARTICLE_DESTROY_DELAY = 10f;
 
@@ -50,7 +51,7 @@ namespace RPG.Characters
         protected void SetUpRuntimeAnim()
         {
             animator = GetComponent<Animator>();
-            animController = player.GetOverrideController();
+            animController = character.GetOverrideController();
             animator.runtimeAnimatorController = animController;
         }
 

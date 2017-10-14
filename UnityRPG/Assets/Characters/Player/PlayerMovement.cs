@@ -9,12 +9,8 @@ namespace RPG.Characters
 {
     public class PlayerMovement : MonoBehaviour
     {
+        
 
-
-        [SerializeField] AnimatorOverrideController animatorOverrideController = null;
-
-        [Range(0.1f, 1f)] [SerializeField] float criticalHitChance;
-        [SerializeField] float criticalHitMultiplier = 1.5f;
         // Temporarily serialized for dubbing
 
         [SerializeField] ParticleSystem criticalHitParticle;
@@ -26,7 +22,7 @@ namespace RPG.Characters
         SpecialAbilities abilities;
         Enemy enemy = null;
         Character character;
-        Animator animator = null;
+        
         CameraRaycaster cameraRaycaster = null;
         float lastHitTime = 0;
         
@@ -51,10 +47,7 @@ namespace RPG.Characters
             cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
         }
 
-        public AnimatorOverrideController GetOverrideController()
-        {
-            return animatorOverrideController;
-        }
+
 
 
 
