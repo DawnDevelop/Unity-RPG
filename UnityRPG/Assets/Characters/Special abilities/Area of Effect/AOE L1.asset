@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b8d53fbcc3f4144afcf968abb45bc0, type: 3}
+  m_Name: AOE L1
+  m_EditorClassIdentifier: 
+  energyCost: 70
+  particlePrefab: {fileID: 1288574436124150, guid: fdb991f1d76654a418397b60cd91acab,
+    type: 2}
+  audioClip: []
+  animationClip: {fileID: 7400000, guid: 3aea1d0041516004b81ef82087a4577a, type: 2}
+  hitDelay: 3.5
+  abilityDelay: 0
+  isConeAbility: 1
+  abilityLength: {x: 5, y: 5, z: 5}
+  instantiateOnPlayer: 0
+  radius: 19.77
+  damageToEachTarget: 15

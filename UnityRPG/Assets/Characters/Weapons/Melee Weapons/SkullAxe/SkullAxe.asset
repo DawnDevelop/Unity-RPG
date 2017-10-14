@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97d84893fc63234bb37be2aa93ed87c, type: 3}
+  m_Name: SkullAxe
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4432613456219066, guid: c70b66076f75a594392f6f7d1f9e04ba,
+    type: 2}
+  weaponPrefab: {fileID: 100000, guid: f9beeb34d54ecdd4c80a88dfe4fe6a5a, type: 2}
+  attackAnimation: {fileID: 7400000, guid: f94c62a8b96f5a7469ce0da8ccac09b3, type: 3}
+  maxAttackRange: 3
+  Attackspeed: 2
+  additionalDamage: 10
