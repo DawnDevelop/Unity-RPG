@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.SceneManagement;
 
 // TODO consider re-wire...
 using RPG.CameraUI;
-using RPG.Core;
 using RPG.Weapons;
 
 namespace RPG.Characters
 {
     public class PlayerMovement : MonoBehaviour
     {
-        
+
         [SerializeField] float baseDamage = 10f;
         [SerializeField] Weapon currentWeaponConfig = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
@@ -22,29 +17,39 @@ namespace RPG.Characters
         [Range(0.1f, 1f)] [SerializeField] float criticalHitChance;
         [SerializeField] float criticalHitMultiplier = 1.5f;
         // Temporarily serialized for dubbing
-        
+
         [SerializeField] ParticleSystem criticalHitParticle;
 
-        
+
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
         SpecialAbilities abilities;
         Enemy enemy = null;
+        Character character;
         Animator animator = null;
         CameraRaycaster cameraRaycaster = null;
         float lastHitTime = 0;
         GameObject weaponObject = null;
 
 
-        
+
 
         void Start()
         {
+            character = GetComponent<Character>();
             abilities = GetComponent<SpecialAbilities>();
-            RegisterForMouseClick();
+
+            RegisterForMouseEvents();
             PutWeaponInHand(currentWeaponConfig);
             SetAttackAnimation();
+        }
+
+        private void RegisterForMouseEvents()
+        {
+            cameraRaycaster = FindObjectOfType<CameraUI.CameraRaycaster>();
+            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+            cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
         }
 
         public AnimatorOverrideController GetOverrideController()
@@ -81,6 +86,28 @@ namespace RPG.Characters
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
         }
 
+        void OnMouseOverPotentiallyWalkable(Vector3 destination)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                character.SetDestination(destination);
+            }
+        }
+
+        void OnMouseOverEnemy(Enemy enemyToSet)
+        {
+            this.enemy = enemyToSet;
+            if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
+            {
+                AttackTarget();
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                abilities.AttemptSpecialAbility(0);
+            }
+        }
+
+        //Move to weapon system
         public void PutWeaponInHand(Weapon weaponToUse)
         {
             currentWeaponConfig = weaponToUse;
@@ -101,11 +128,7 @@ namespace RPG.Characters
             return dominantHands[0].gameObject;
         }
 
-        private void RegisterForMouseClick()
-        {
-            cameraRaycaster = FindObjectOfType<CameraUI.CameraRaycaster>();
-            cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-        }
+
 
 
         private void AttackTarget()
@@ -122,7 +145,7 @@ namespace RPG.Characters
         {
             bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) <= criticalHitChance;
             float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
-            if(isCriticalHit)
+            if (isCriticalHit)
             {
                 criticalHitParticle.Play();
                 return damageBeforeCritical * criticalHitMultiplier;
