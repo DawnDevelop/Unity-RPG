@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace RPG.Weapons 
 {
@@ -9,21 +10,30 @@ namespace RPG.Weapons
 
         [SerializeField] float baseDamage = 10f;
         [SerializeField] WeaponConfig currentWeaponConfig = null;
+        [Range(0.1f, 1f)] [SerializeField] float criticalHitChance;
+        [SerializeField] float criticalHitMultiplier = 1.5f;
+
+        GameObject target;
+        GameObject weaponObject;
+        Animator animator;
 
         private void Start()
         {
-
+            animator = GetComponent<Animator>();
             PutWeaponInHand(currentWeaponConfig);
             SetAttackAnimation();
         }
 
-        public void AttackTarget(GameObject gameObject)
+        public void AttackTarget(GameObject targetToAttack)
         {
+            target = targetToAttack;
+            print("attacking: " + targetToAttack);
+            //TODO Use coroutine
 
         }
 
         //Move to weapon system
-        public void PutWeaponInHand(Weapon weaponToUse)
+        public void PutWeaponInHand(WeaponConfig weaponToUse)
         {
             currentWeaponConfig = weaponToUse;
             var weaponPrefab = weaponToUse.GetWeaponPrefab();
@@ -56,6 +66,11 @@ namespace RPG.Weapons
             }
         }
 
+        public WeaponConfig GetCurrentWeapon()
+        {
+            return currentWeaponConfig;
+        }
+
         private float CalculateDamage()
         {
             bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) <= criticalHitChance;
@@ -71,11 +86,6 @@ namespace RPG.Weapons
             }
         }
 
-        private bool IsTargetInRange(GameObject target)
-        {
-            float distanceToTarget = (target.transform.position - transform.position).magnitude;
-            return distanceToTarget <= currentWeaponConfig.GetMaxAttackRange();
-        }
 
         private void SetAttackAnimation()
         {
