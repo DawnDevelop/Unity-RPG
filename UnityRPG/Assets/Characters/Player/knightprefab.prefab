@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 114851302850075978}
   - component: {fileID: 114664894065960238}
   - component: {fileID: 114391120423689386}
+  - component: {fileID: 114408341019213836}
   m_Layer: 11
   m_Name: knightprefab
   m_TagString: Player
@@ -2171,13 +2172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9268856d129aa64a8ab4590ce181c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
-  currentWeaponConfig: {fileID: 11400000, guid: f29dce5af4932904aa96465241214e40,
-    type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: 799f59c859fd4004b95a6cc832727051,
-    type: 2}
-  criticalHitChance: 0.205
-  criticalHitMultiplier: 1.25
   criticalHitParticle: {fileID: 19824258, guid: 0437f017df5f18f4892ec0d18663edd9,
     type: 2}
 --- !u!114 &114391120423689386
@@ -2196,6 +2190,22 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deathVanishSeconds: 2
+--- !u!114 &114408341019213836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401785096066552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c6bba78a210a34ebc6156ec604d185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: 8202623bbc9f3b0459713cd1225349dd,
+    type: 2}
+  criticalHitChance: 0
+  criticalHitMultiplier: 1.5
 --- !u!114 &114664894065960238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2237,7 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb75cb33cc6f884db40fe6cec105d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
+  animatorController: {fileID: 22100000, guid: 799f59c859fd4004b95a6cc832727051, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 799f59c859fd4004b95a6cc832727051,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: ffaf641b210f5ea41952cf36f1379d66, type: 3}
@@ -2252,6 +2262,7 @@ MonoBehaviour:
   moveThreshhold: 1
   navMeshAgentSteeringSpeed: 1
   navMeshStoppingDistance: 3
+  navMeshBaseOffset: 0
 --- !u!137 &137066263921494062
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

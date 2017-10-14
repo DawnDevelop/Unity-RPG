@@ -15,16 +15,10 @@ namespace RPG.Characters
 
         [SerializeField] ParticleSystem criticalHitParticle;
 
-
-        const string ATTACK_TRIGGER = "Attack";
-        const string DEFAULT_ATTACK = "DEFAULT ATTACK";
-
         SpecialAbilities abilities;
         Enemy enemy = null;
         Character character;
-        
         CameraRaycaster cameraRaycaster = null;
-        float lastHitTime = 0;
         
         WeaponSystem weaponSystem;
 

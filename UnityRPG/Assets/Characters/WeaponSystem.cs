@@ -24,6 +24,7 @@ namespace RPG.Characters
 
         private void Start()
         {
+            character = GetComponent<Character>();
             animator = GetComponent<Animator>();
             PutWeaponInHand(currentWeaponConfig);
             SetAttackAnimation();
@@ -36,13 +37,12 @@ namespace RPG.Characters
             //TODO Use coroutine
         }
 
-        //Move to weapon system
         public void PutWeaponInHand(WeaponConfig weaponToUse)
         {
             currentWeaponConfig = weaponToUse;
             var weaponPrefab = weaponToUse.GetWeaponPrefab();
             GameObject dominantHand = RequestDominantHand();
-            Destroy(weaponObject); //Empty hands
+            Destroy(weaponObject); // empty hands
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
             weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.localRotation;
@@ -83,7 +83,6 @@ namespace RPG.Characters
 
         private void SetAttackAnimation()
         {
-            animator = GetComponent<Animator>();
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();

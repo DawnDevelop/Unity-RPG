@@ -21,7 +21,10 @@ namespace RPG.Characters
         {
             config = configToSet;
         }
-
+        private void Start()
+        {
+            animController = GetComponent<AnimatorOverrideController>();
+        }
         protected IEnumerator PlayParticleEffect()
         {
             yield return new WaitForSeconds(config.GetAbilityDelay()); //Wait a certain amount of time
@@ -51,7 +54,7 @@ namespace RPG.Characters
         protected void SetUpRuntimeAnim()
         {
             animator = GetComponent<Animator>();
-            animController = character.GetOverrideController();
+            animController = GetComponent<Character>().GetOverrideController();
             animator.runtimeAnimatorController = animController;
         }
 

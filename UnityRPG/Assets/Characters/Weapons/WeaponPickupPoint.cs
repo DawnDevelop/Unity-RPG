@@ -49,7 +49,11 @@ namespace RPG.Characters
         private void OnTriggerEnter(Collider other)
         {
             FindObjectOfType<WeaponSystem>().PutWeaponInHand(weaponConfig);
-            audioSource.PlayOneShot(pickUpSFX);
+
+            if(!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(pickUpSFX);
+            }
         }
     }
 
