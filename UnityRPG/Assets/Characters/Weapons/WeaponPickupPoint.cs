@@ -10,7 +10,7 @@ namespace RPG.Weapons
     public class WeaponPickupPoint : MonoBehaviour
     {
 
-        [SerializeField] Weapon weaponConfig;
+        [SerializeField] WeaponConfig weaponConfig;
         [SerializeField] AudioClip pickUpSFX;
 
         AudioSource audioSource;

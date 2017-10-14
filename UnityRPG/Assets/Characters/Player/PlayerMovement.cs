@@ -10,8 +10,7 @@ namespace RPG.Characters
     public class PlayerMovement : MonoBehaviour
     {
 
-        [SerializeField] float baseDamage = 10f;
-        [SerializeField] Weapon currentWeaponConfig = null;
+
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
         [Range(0.1f, 1f)] [SerializeField] float criticalHitChance;
@@ -31,18 +30,18 @@ namespace RPG.Characters
         CameraRaycaster cameraRaycaster = null;
         float lastHitTime = 0;
         GameObject weaponObject = null;
-
+        WeaponSystem weaponSystem;
 
 
 
         void Start()
         {
+            weaponSystem = GetComponent<WeaponSystem>();
             character = GetComponent<Character>();
             abilities = GetComponent<SpecialAbilities>();
 
             RegisterForMouseEvents();
-            PutWeaponInHand(currentWeaponConfig);
-            SetAttackAnimation();
+
         }
 
         private void RegisterForMouseEvents()
@@ -79,12 +78,7 @@ namespace RPG.Characters
             }
         }
 
-        private void SetAttackAnimation()
-        {
-            animator = GetComponent<Animator>();
-            animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
-        }
+
 
         void OnMouseOverPotentiallyWalkable(Vector3 destination)
         {
@@ -99,7 +93,7 @@ namespace RPG.Characters
             this.enemy = enemyToSet;
             if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
             {
-                AttackTarget();
+                weaponSystem.AttackTarget();
             }
             else if (Input.GetMouseButtonDown(1))
             {
@@ -107,59 +101,6 @@ namespace RPG.Characters
             }
         }
 
-        //Move to weapon system
-        public void PutWeaponInHand(Weapon weaponToUse)
-        {
-            currentWeaponConfig = weaponToUse;
-            var weaponPrefab = weaponToUse.GetWeaponPrefab();
-            GameObject dominantHand = RequestDominantHand();
-            Destroy(weaponObject); //Empty hands
-            weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
-            weaponObject.transform.localPosition = currentWeaponConfig.gripTransform.localPosition;
-            weaponObject.transform.localRotation = currentWeaponConfig.gripTransform.localRotation;
-        }
 
-        private GameObject RequestDominantHand()
-        {
-            var dominantHands = GetComponentsInChildren<DominantHand>();
-            int numberOfDominantHands = dominantHands.Length;
-            Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on Player, please add one");
-            Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on Player, please remove one");
-            return dominantHands[0].gameObject;
-        }
-
-
-
-
-        private void AttackTarget()
-        {
-            if (Time.time - lastHitTime > currentWeaponConfig.GetAttackspeed())
-            {
-                SetAttackAnimation();
-                animator.SetTrigger(ATTACK_TRIGGER);
-                lastHitTime = Time.time;
-            }
-        }
-
-        private float CalculateDamage()
-        {
-            bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) <= criticalHitChance;
-            float damageBeforeCritical = baseDamage + currentWeaponConfig.GetAdditionalDamage();
-            if (isCriticalHit)
-            {
-                criticalHitParticle.Play();
-                return damageBeforeCritical * criticalHitMultiplier;
-            }
-            else
-            {
-                return damageBeforeCritical;
-            }
-        }
-
-        private bool IsTargetInRange(GameObject target)
-        {
-            float distanceToTarget = (target.transform.position - transform.position).magnitude;
-            return distanceToTarget <= currentWeaponConfig.GetMaxAttackRange();
-        }
     }
 }
