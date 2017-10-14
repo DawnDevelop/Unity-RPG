@@ -31,6 +31,7 @@ namespace RPG.Characters
         [Header("NavMeshAgent")]
         [SerializeField] float navMeshAgentSteeringSpeed = 1f;
         [SerializeField] float navMeshStoppingDistance = 3f;
+        [SerializeField] float navMeshBaseOffset = 0;
 
         NavMeshAgent navMeshAgent;
         Animator animator;
@@ -71,7 +72,7 @@ namespace RPG.Characters
             navMeshAgent.autoBraking = false;
             navMeshAgent.updateRotation = false;
             navMeshAgent.updatePosition = true;
-            navMeshAgent.baseOffset = -0.03f;
+            navMeshAgent.baseOffset = navMeshBaseOffset;
             navMeshAgent.acceleration = 3f;
         }
 

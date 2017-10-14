@@ -797,8 +797,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4191856284096606}
-  - component: {fileID: 114574282873628562}
-  - component: {fileID: 114443231545639854}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Untagged
@@ -2852,51 +2850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1311539807392560, guid: 9a9d70d10b9331d469e57254147e0430,
     type: 2}
---- !u!114 &114443231545639854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669834542721890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb75cb33cc6f884db40fe6cec105d9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animatorController: {fileID: 0}
-  animatorOverrideController: {fileID: 0}
-  characterAvatar: {fileID: 0}
-  audioSourceSpatialBlend: 0.5
-  colliderCenter: {x: 0, y: 1.13, z: 0}
-  colliderRadius: 0.2
-  colliderHight: 2.5
-  stoppingDistance: 1
-  moveSpeedMultiplier: 1.2
-  movinTurnSpeed: 360
-  stationaryTurnSpeed: 180
-  moveThreshhold: 1
-  navMeshAgentSteeringSpeed: 1
-  navMeshStoppingDistance: 3
---- !u!114 &114574282873628562
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669834542721890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813bbd805a4d6d84c835446d850293d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseRadius: 5.04
-  FiringPeriodInSeconds: 1
-  FiringPeriodvariation: 0.1
-  attackRadius: 12.11
-  projectileDamage: 10
-  projectileToUse: {fileID: 1906262284334302, guid: 778a95539aa09724a8da13e6edec9437,
-    type: 2}
-  projectileSocket: {fileID: 1019951039914088}
-  AimOffset: {x: 0, y: 1, z: 0}
+  cameraToLookAt: {fileID: 0}
 --- !u!137 &137404062854985288
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
