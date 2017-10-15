@@ -51,12 +51,12 @@ namespace RPG.Characters
 
         IEnumerator SpawnProjectile()
         {
-            yield return new WaitForSecondsRealtime(0.7f);
+            yield return new WaitForSecondsRealtime(0.3f);
 
             var direction = character.transform.position - projectileSocket.transform.position;            
 
             GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.LookRotation(direction));
-            newProjectile.transform.Rotate(direction.x, -110, direction.z);
+            newProjectile.transform.Rotate(direction.x, -90, direction.z);
             Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
             Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
             newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projSpeed;

@@ -11,7 +11,7 @@ namespace RPG.Characters
         public Transform gripTransform;
 
         [SerializeField] GameObject weaponPrefab;
-        [SerializeField] AnimationClip attackAnimation;
+        [SerializeField] AnimationClip[] attackAnimation = null;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float timeBetweenHits = .5f;
         [SerializeField] float additionalDamage = 10f;
@@ -37,7 +37,7 @@ namespace RPG.Characters
         public AnimationClip GetAttackAnimClip()
         {
             RemoveAnimationEvents();
-            return attackAnimation;
+            return attackAnimation[Random.Range(0, attackAnimation.Length)];
         }
 
         public float GetAdditionalDamage()
@@ -48,7 +48,11 @@ namespace RPG.Characters
         //So that asset packs cannot cause crashes
         private void RemoveAnimationEvents()
         {
-            attackAnimation.events = new AnimationEvent[0];
+            for (int i = 0; i < attackAnimation.Length; i++)
+            {
+                attackAnimation[i].events = new AnimationEvent[0];
+            }
+            
         }
     }
 }
