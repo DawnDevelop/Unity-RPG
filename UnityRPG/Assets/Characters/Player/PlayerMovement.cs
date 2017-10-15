@@ -16,7 +16,7 @@ namespace RPG.Characters
         [SerializeField] ParticleSystem criticalHitParticle;
 
         SpecialAbilities abilities;
-        Enemy enemy = null;
+        EnemyAI enemy = null;
         Character character;
         CameraRaycaster cameraRaycaster = null;
         
@@ -82,7 +82,7 @@ namespace RPG.Characters
             return distanceToTarget <= weaponSystem.GetCurrentWeapon().GetMaxAttackRange();
         }
 
-        void OnMouseOverEnemy(Enemy enemyToSet)
+        void OnMouseOverEnemy(EnemyAI enemyToSet)
         {
             this.enemy = enemyToSet;
             if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))

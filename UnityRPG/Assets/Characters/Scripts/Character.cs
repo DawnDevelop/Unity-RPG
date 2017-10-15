@@ -141,7 +141,7 @@ namespace RPG.Characters
         }
 
 
-        void OnMouseOverEnemy(Enemy enemy)
+        void OnMouseOverEnemy(EnemyAI enemy)
         {
             if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
             {
