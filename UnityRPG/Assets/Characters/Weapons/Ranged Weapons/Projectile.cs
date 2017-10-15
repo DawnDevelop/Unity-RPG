@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Core;
 
-namespace RPG.Weapons
+namespace RPG.Characters
 {
     public class Projectile : MonoBehaviour
     {
-
         [SerializeField] float projectileSpeed;
-        GameObject shooter; //For debug purposes
+        [SerializeField] GameObject shooter; // So can inspected when paused
 
-        const float DESTROY_DELAY = 0.005f;
+        const float DESTROY_DELAY = 0.01f;
         float damageCaused;
 
         public void SetShooter(GameObject shooter)
@@ -25,36 +22,28 @@ namespace RPG.Weapons
             damageCaused = damage;
         }
 
-        private void Start()
+        public float GetDefaultLaunchSpeed()
         {
+            return projectileSpeed;
         }
 
         void OnCollisionEnter(Collision collision)
         {
-            //
-
-            int layerCollidedWith = collision.gameObject.layer;
+            var layerCollidedWith = collision.gameObject.layer;
             if (shooter && layerCollidedWith != shooter.layer)
             {
-                //DamageIfDamagable(collision);
+                DamageIfDamageable(collision);
+                Destroy(gameObject);
             }
         }
 
-        //TODO reimplement
-        //private void DamageIfDamagable(Collision collision)
-        //{
-        //    Component damageableComponent = collision.gameObject.GetComponent(typeof(HealthSystem));
-        //    if (damageableComponent)
-        //    {
-        //        (damageableComponent as IDamageable).TakeDamage(damageCaused);
-        //    }
-        //    Destroy(gameObject, DESTROY_DELAY);
-        //}
-
-        public float GetDefaultLauchSpeed()
+        private void DamageIfDamageable(Collision collision)
         {
-            return projectileSpeed;
+            var damagableComponent = collision.gameObject.GetComponent<HealthSystem>();
+            if (damagableComponent)
+            {
+                damagableComponent.TakeDamage(damageCaused);
+            }
         }
     }
-
 }

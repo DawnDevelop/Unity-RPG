@@ -14,6 +14,7 @@ namespace RPG.Characters
         [SerializeField] WaypointContainer patrolPath;
         [SerializeField] float waypointTolerance = 2.0f;
         [SerializeField] float wayPointMoveTime = 2f;
+
         GameObject target;
         PlayerMovement player = null;
         Character character;

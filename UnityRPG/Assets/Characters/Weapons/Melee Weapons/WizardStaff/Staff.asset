@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97d84893fc63234bb37be2aa93ed87c, type: 3}
   m_Name: Staff
   m_EditorClassIdentifier: 
-  gripTransform: {fileID: 4409464475664008, guid: eee5f835ad903b24aa3a525c6edf8d45,
+  gripTransform: {fileID: 4105863949016296, guid: f15a13288f1d77d43971b924113196fa,
     type: 2}
-  weaponPrefab: {fileID: 1196615702508362, guid: 08234cbd7106fa542a776daf6c94243a,
+  weaponPrefab: {fileID: 1646160246936206, guid: f15a13288f1d77d43971b924113196fa,
     type: 2}
-  attackAnimation: {fileID: 7400000, guid: 70705c4c6ff4a8240b4cc599b50353c6, type: 2}
-  maxAttackRange: 8
+  attackAnimation: {fileID: 7400000, guid: f0f38438b1a0602489d98f902699342b, type: 3}
+  maxAttackRange: 2
   timeBetweenHits: 2
-  additionalDamage: 10
-  damageDelay: 0.5
+  additionalDamage: 3
+  damageDelay: 0.3

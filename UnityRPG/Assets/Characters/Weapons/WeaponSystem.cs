@@ -14,17 +14,24 @@ namespace RPG.Characters
         [Range(0.1f, 1f)] [SerializeField] float criticalHitChance;
         [SerializeField] float criticalHitMultiplier = 1.5f;
 
+        [Header("Projectile wenn vorhanden")]
+        [SerializeField] GameObject projectileToUse;
+        [SerializeField] GameObject projectileSocket;
+
         GameObject target;
         GameObject weaponObject;
         Animator animator;
         Character character;
         float lastHitTime;
+        Projectile projectile;
+        Rigidbody rb;
 
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
 
         private void Start()
         {
+            rb = GetComponent<Rigidbody>();
             character = GetComponent<Character>();
             animator = GetComponent<Animator>();
             PutWeaponInHand(currentWeaponConfig);
@@ -34,6 +41,15 @@ namespace RPG.Characters
         public void StopAttacking()
         {
             StopAllCoroutines();
+        }
+
+        void SpawnProjectile()
+        {
+            GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
+            Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+
+            Vector3 unitVectorToPlayer = (character.transform.position - projectileSocket.transform.position).normalized;
+            newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * 5;
         }
 
         private void Update()
@@ -67,7 +83,6 @@ namespace RPG.Characters
         public void AttackTarget(GameObject targetToAttack)
         {
             target = targetToAttack;
-            print("attacking: " + targetToAttack);
             StartCoroutine(AttackTargetRepeatedly());
         }
 
@@ -99,10 +114,14 @@ namespace RPG.Characters
             float damageDelay = currentWeaponConfig.GetDamageDelay();
             SetAttackAnimation();
             StartCoroutine(DamageAfterDelay(damageDelay));
+
+            
         }
 
         private IEnumerator DamageAfterDelay(float damageDelay)
         {
+            SpawnProjectile();
+
             yield return new WaitForSecondsRealtime(damageDelay);
 
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
@@ -138,6 +157,7 @@ namespace RPG.Characters
                 SetAttackAnimation();
                 animator.SetTrigger(ATTACK_TRIGGER);
                 lastHitTime = Time.time;
+
             }
         }
 
@@ -162,6 +182,7 @@ namespace RPG.Characters
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+
         }
 
     }

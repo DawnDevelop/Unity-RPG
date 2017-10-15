@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97d84893fc63234bb37be2aa93ed87c, type: 3}
   m_Name: StandardSword
   m_EditorClassIdentifier: 
-  gripTransform: {fileID: 0}
-  weaponPrefab: {fileID: 0}
-  attackAnimation: {fileID: 0}
+  gripTransform: {fileID: 4569916897816566, guid: eef671e2fb851974baf113893d2814a1,
+    type: 2}
+  weaponPrefab: {fileID: 1362183007246380, guid: 5d10ea78f1829334085ead952c55cce2,
+    type: 2}
+  attackAnimation: {fileID: 7400000, guid: d82669b37833c5f4db716b82428a5ad6, type: 3}
   maxAttackRange: 2
   timeBetweenHits: 0.5
-  additionalDamage: 10
+  additionalDamage: 5
   damageDelay: 0.5

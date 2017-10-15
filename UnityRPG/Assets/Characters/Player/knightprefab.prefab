@@ -2194,6 +2194,8 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 8300000, guid: 30cb15ac568754f41aa88f047f47b50a, type: 3}
   - {fileID: 8300000, guid: af05a415f0cee4b38b38441559b353d2, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: af05a415f0cee4b38b38441559b353d2, type: 3}
   deathVanishSeconds: 2
 --- !u!114 &114408341019213836
 MonoBehaviour:

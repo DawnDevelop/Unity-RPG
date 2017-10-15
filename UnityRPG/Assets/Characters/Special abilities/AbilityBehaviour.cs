@@ -6,6 +6,7 @@ namespace RPG.Characters
     public abstract class AbilityBehavior : MonoBehaviour
     {
         protected AbilityConfig config;
+        protected Projectile projectile;
 
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
@@ -45,7 +46,6 @@ namespace RPG.Characters
 
         protected void PlayAbilityAnimation()
         {
-            print("PlayAnim");
             var animatorOverrideController = GetComponent<Character>().GetOverrideController();
             var animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animatorOverrideController;
