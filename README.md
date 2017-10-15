@@ -1,4 +1,4 @@
-# Unity-RPG
+# README
 
 Um einen Character zu erstellen (Gegner oder npc) muss man nur Die komponente 
 Character,
