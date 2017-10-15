@@ -100,6 +100,9 @@ Wie lange soll der character pro hit wartenm (Attackspeed nur umgedreht :D)
 Additional Damage:
 Wieviel dmg macht die Waffe.
 
+DamageDelay:
+nach wieviel sekunden soll der damage kommen? Am besten so einstellen das der damage halt während der animation kommt und es so aussieht als würde er treffen.
+
 SOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 zurück zur WeaponConfig auf deinem Character.
 
