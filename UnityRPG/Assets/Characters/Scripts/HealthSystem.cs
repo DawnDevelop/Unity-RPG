@@ -72,21 +72,20 @@ namespace RPG.Characters
             characterMovement.kill();
             animator.SetTrigger(DEATH_TRIGGER);
 
+            audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+            audioSource.Play(); //Override any existing sounds
+            yield return new WaitForSecondsRealtime(audioSource.clip.length);
+
             var playerComponent = GetComponent<PlayerMovement>();
             if(playerComponent && playerComponent.isActiveAndEnabled) //Lazy evaluation
             {
-                audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
-                audioSource.Play(); //Override any existing sounds
-                yield return new WaitForSecondsRealtime(audioSource.clip.length);
+
                 SceneManager.LoadScene(0);
             }
             else
             {
                 Destroy(gameObject, deathVanishSeconds);
-            }
-
-
-           
+            }           
         }
 
 

@@ -6,7 +6,8 @@ public class DimLight : MonoBehaviour {
 
 
     [SerializeField] Light lightToSwitch = null;
-	// Use this for initialization
+    
+    // Use this for initialization
 	void Start ()
     {
         
@@ -20,6 +21,7 @@ public class DimLight : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        
         lightToSwitch.range = 0;
         lightToSwitch.intensity = 0;
         lightToSwitch.color = new Color(-255f, -255f, -255f, 1);

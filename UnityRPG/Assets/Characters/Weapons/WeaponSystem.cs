@@ -107,8 +107,9 @@ namespace RPG.Characters
             
             while (attackerStillAlive && targetStillAlive)
             {
-                float weaponHitPeriod = currentWeaponConfig.GetTimeBetweenAnimation();
-                float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
+                var animationClip = currentWeaponConfig.GetAttackAnimClip();
+                float animationClipTime = animationClip.length / character.GetAnimationSpeedMultiplier();
+                float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimation();
 
                 bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
 
@@ -159,20 +160,6 @@ namespace RPG.Characters
             Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on," + gameObject.name +"please add one");
             Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on" + gameObject.name + "please remove one");
             return dominantHands[0].gameObject;
-        }
-
-
-
-
-        private void AttackTarget()
-        {
-            if (Time.time - lastHitTime > currentWeaponConfig.GetTimeBetweenAnimation())
-            {
-                SetAttackAnimation();
-                animator.SetTrigger(ATTACK_TRIGGER);
-                lastHitTime = Time.time;
-
-            }
         }
 
         public WeaponConfig GetCurrentWeapon()

@@ -44,7 +44,7 @@ namespace RPG.Characters
             yield return new WaitForEndOfFrame();
         }
 
-        protected void PlayAbilityAnimation()
+        public void PlayAbilityAnimation()
         {
             var animatorOverrideController = GetComponent<Character>().GetOverrideController();
             var animator = GetComponent<Animator>();

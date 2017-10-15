@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using RPG.CameraUI;
 using System.Collections;
+using System;
 
 namespace RPG.Characters
 {
@@ -9,6 +10,8 @@ namespace RPG.Characters
 
         // Temporarily serialized for debugging
         [SerializeField] ParticleSystem criticalHitParticle;
+        [SerializeField] AnimationClip strafeLeftClip;
+        [SerializeField] AnimationClip strafeRightClip;
 
         SpecialAbilities abilities;
         EnemyAI enemy = null;
@@ -39,6 +42,31 @@ namespace RPG.Characters
             if (healthPercantage > Mathf.Epsilon)
             {
                 ScanForAbilityKeyDown();
+                ScanForAorDKey();
+            }
+        }
+
+        private void ScanForAorDKey()
+        {
+            if(Input.GetKeyDown("a"))
+            {
+                var animatorOverrideController = GetComponent<Character>().GetOverrideController();
+                var animator = GetComponent<Animator>();
+                animator.runtimeAnimatorController = animatorOverrideController;
+                animatorOverrideController["DEFAULT ATTACK"] = strafeLeftClip;
+                animator.SetTrigger("Attack");
+            }
+            else if(Input.GetKeyDown("d"))
+            {
+                var animatorOverrideController = GetComponent<Character>().GetOverrideController();
+                var animator = GetComponent<Animator>();
+                animator.runtimeAnimatorController = animatorOverrideController;
+                animatorOverrideController["DEFAULT ATTACK"] = strafeRightClip;
+                animator.SetTrigger("Attack");
+            }
+            else
+            {
+                return;
             }
         }
 
@@ -51,6 +79,7 @@ namespace RPG.Characters
                     abilities.AttemptSpecialAbility(keyIndex);
                 }
             }
+
         }
 
 

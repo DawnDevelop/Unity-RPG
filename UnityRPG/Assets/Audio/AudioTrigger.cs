@@ -7,12 +7,15 @@ namespace RPG.Core
     {
         [SerializeField] AudioClip clip;
         [SerializeField] int layerFilter = 0;
-        [SerializeField] float triggerRadius = 5f;
+        [SerializeField] float playerDistanceThreshhold = 5f;
         [SerializeField] bool isOneTimeOnly = true;
-        [SerializeField] float audioVolume = 1f;
-
-        [SerializeField] bool hasPlayed = false;
+        [SerializeField] float volume = 1f;
+        [SerializeField] bool stopCurrentTrack = false;
+        //
+        bool hasPlayed = false;
         AudioSource audioSource;
+        GameObject player;
+        private AudioSource[] allAudioSources;
 
         void Start()
         {
@@ -20,15 +23,22 @@ namespace RPG.Core
             audioSource.playOnAwake = false;
             audioSource.clip = clip;
 
-            SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
-            sphereCollider.isTrigger = true;
-            sphereCollider.radius = triggerRadius;
-            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            player = GameObject.FindWithTag("Player");
         }
 
-        void OnTriggerEnter(Collider other)
+        void StopAllAudio()
         {
-            if (other.gameObject.layer == layerFilter)
+            allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+            foreach (AudioSource audioS in allAudioSources)
+            {
+                audioS.Stop();
+            }
+        }
+
+        private void Update()
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer <= playerDistanceThreshhold)
             {
                 RequestPlayAudioClip();
             }
@@ -36,13 +46,18 @@ namespace RPG.Core
 
         void RequestPlayAudioClip()
         {
+
             if (isOneTimeOnly && hasPlayed)
             {
                 return;
             }
             else if (audioSource.isPlaying == false)
             {
-                audioSource.volume = audioVolume;
+                if (stopCurrentTrack)
+                {
+                    StopAllAudio();
+                }
+                audioSource.volume = volume;
                 audioSource.Play();
                 hasPlayed = true;
             }
@@ -51,7 +66,7 @@ namespace RPG.Core
         void OnDrawGizmos()
         {
             Gizmos.color = new Color(0, 255f, 0, .5f);
-            Gizmos.DrawWireSphere(transform.position, triggerRadius);
+            Gizmos.DrawWireSphere(transform.position, playerDistanceThreshhold);
         }
     }
 }

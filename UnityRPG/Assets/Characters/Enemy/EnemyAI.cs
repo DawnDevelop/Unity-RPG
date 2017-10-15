@@ -12,7 +12,7 @@ namespace RPG.Characters
     {
         [SerializeField] float chaseRadius = 6f;
         [SerializeField] WaypointContainer patrolPath;
-        [SerializeField] float waypointTolerance = 2.0f;
+        [SerializeField] float positionTolerance = 2.0f;
         [SerializeField] float wayPointMoveTime = 2f;
 
         GameObject target;
@@ -75,7 +75,7 @@ namespace RPG.Characters
 
         private void CycleWaypointWhenClose(Vector3 nextWaypointPos)
         {
-            if (Vector3.Distance(transform.position, nextWaypointPos) <= waypointTolerance)
+            if (Vector3.Distance(transform.position, nextWaypointPos) <= positionTolerance)
             {
                 nextWaypointIndex = (nextWaypointIndex + 1) % patrolPath.transform.childCount;
             }
@@ -90,6 +90,7 @@ namespace RPG.Characters
                 yield return new WaitForEndOfFrame();
             }
         }
+
 
         void OnDrawGizmos()
         {
