@@ -27,23 +27,17 @@ namespace RPG.Characters
             return projectileSpeed;
         }
 
-        void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            var layerCollidedWith = collision.gameObject.layer;
-            if (shooter && layerCollidedWith != shooter.layer)
+            if(other.GetComponent<PlayerMovement>())
             {
-                DamageIfDamageable(collision);
                 Destroy(gameObject);
             }
-        }
-
-        private void DamageIfDamageable(Collision collision)
-        {
-            var damagableComponent = collision.gameObject.GetComponent<HealthSystem>();
-            if (damagableComponent)
+            else
             {
-                damagableComponent.TakeDamage(damageCaused);
+                Destroy(gameObject, 5f);
             }
+
         }
     }
 }

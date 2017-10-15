@@ -17,6 +17,9 @@ namespace RPG.Characters
         [Header("Projectile wenn vorhanden")]
         [SerializeField] GameObject projectileToUse;
         [SerializeField] GameObject projectileSocket;
+        [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
+        [SerializeField] float projSpeed = 1f;
+        [SerializeField] Vector3 projRotate;
 
         GameObject target;
         GameObject weaponObject;
@@ -25,6 +28,7 @@ namespace RPG.Characters
         float lastHitTime;
         Projectile projectile;
         Rigidbody rb;
+        GameObject player;
 
         const string ATTACK_TRIGGER = "Attack";
         const string DEFAULT_ATTACK = "DEFAULT ATTACK";
@@ -33,6 +37,7 @@ namespace RPG.Characters
         {
             rb = GetComponent<Rigidbody>();
             character = GetComponent<Character>();
+            player = GameObject.FindGameObjectWithTag("Player");
             animator = GetComponent<Animator>();
             PutWeaponInHand(currentWeaponConfig);
             SetAttackAnimation();
@@ -43,13 +48,19 @@ namespace RPG.Characters
             StopAllCoroutines();
         }
 
-        void SpawnProjectile()
+        IEnumerator SpawnProjectile()
         {
-            GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
-            Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+            yield return new WaitForSecondsRealtime(0.7f);
 
-            Vector3 unitVectorToPlayer = (character.transform.position - projectileSocket.transform.position).normalized;
-            newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * 5;
+            var direction = character.transform.position - projectileSocket.transform.position;            
+
+            GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.LookRotation(direction));
+            newProjectile.transform.Rotate(direction.x, -110, direction.z);
+            Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+            Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
+            newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projSpeed;
+
+            
         }
 
         private void Update()
@@ -120,7 +131,7 @@ namespace RPG.Characters
 
         private IEnumerator DamageAfterDelay(float damageDelay)
         {
-            SpawnProjectile();
+            StartCoroutine(SpawnProjectile());
 
             yield return new WaitForSecondsRealtime(damageDelay);
 
