@@ -432,7 +432,7 @@ namespace UMA.AssetBundles
 			if (GUILayout.Button(buttonBuildAssetBundlesText))
 			{
 				BuildScript.BuildAssetBundles();
-				Caching.CleanCache ();
+				//Caching.CleanCache ();
 				return;
 			}
 			EndVerticalPadded(5);
@@ -539,7 +539,7 @@ namespace UMA.AssetBundles
 
 				if (GUILayout.Button("Clean the Cache"))
 				{
-					_statusMessage = Caching.CleanCache() ? "Cache Cleared." : "Error clearing cache.";
+					//_statusMessage = Caching.CleanCache() ? "Cache Cleared." : "Error clearing cache.";
 				}
 				EditorGUILayout.Space();
 			}
