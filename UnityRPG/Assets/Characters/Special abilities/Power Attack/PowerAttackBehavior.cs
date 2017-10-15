@@ -5,13 +5,14 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
-    public class PowerAttackBehavior : AbilityBehaviour
+    public class PowerAttackBehavior : AbilityBehavior
     {
 
         public override void Use(GameObject target)
         {
             DealDamage(target);
-            StartCoroutine(PlayParticleEffect());
+            PlayParticleEffect();
+            PlayAbilityAnimation();
         }
 
         private void DealDamage(GameObject target)

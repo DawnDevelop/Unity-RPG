@@ -233,7 +233,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 451992}
-  - component: {fileID: 9526084}
   m_Layer: 0
   m_Name: creature1Prefab
   m_TagString: Untagged
@@ -1572,7 +1571,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129030}
   m_LocalRotation: {x: 0, y: 0.99655604, z: 0, w: 0.08292273}
-  m_LocalPosition: {x: 0, y: 0, z: -1.94}
+  m_LocalPosition: {x: -37.584763, y: 0, z: -10.830994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 450504}
@@ -2031,23 +2030,6 @@ Transform:
   m_Father: {fileID: 444278}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9526084
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: dfa9dd007e9fedc4b869bfd63bb3b284, type: 3}
-  m_Controller: {fileID: 9100000, guid: adb501fd7a3fb3b41a546c3976383676, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!137 &13714410
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

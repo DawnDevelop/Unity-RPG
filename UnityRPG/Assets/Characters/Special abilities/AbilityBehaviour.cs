@@ -1,19 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Characters
 {
-    public abstract class AbilityBehaviour : MonoBehaviour
+    public abstract class AbilityBehavior : MonoBehaviour
     {
         protected AbilityConfig config;
-        protected Animator animator;
-        protected PlayerMovement player;
-        protected AudioSource audioSource = null;
-        protected AnimatorOverrideController animController;
-        protected Character character;
 
-        const float PARTICLE_DESTROY_DELAY = 10f;
+        const string ATTACK_TRIGGER = "Attack";
+        const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
+        const float PARTICLE_CLEAN_UP_DELAY = 6f;
 
         public abstract void Use(GameObject target = null);
 
@@ -21,41 +17,40 @@ namespace RPG.Characters
         {
             config = configToSet;
         }
-        private void Start()
+
+        protected void PlayParticleEffect()
         {
-            animController = GetComponent<AnimatorOverrideController>();
-        }
-        protected IEnumerator PlayParticleEffect()
-        {
-            yield return new WaitForSeconds(config.GetAbilityDelay()); //Wait a certain amount of time
-            
             var particlePrefab = config.GetParticlePrefab();
-            var particleObject = Instantiate(particlePrefab, transform.position, particlePrefab.transform.rotation);
+            var particleObject = Instantiate(
+                particlePrefab,
+                transform.position,
+                particlePrefab.transform.rotation
+            );
+            particleObject.transform.parent = transform; // set world space in prefab if required
+            var particleComponent = particleObject.GetComponent<ParticleSystem>();
 
-            //Should the object be on the player?
-            if (config.GetInstantiateOnPlayer() == true)
+            if(particleComponent)
             {
-                particleObject.transform.parent = gameObject.transform;
+                particleObject.GetComponent<ParticleSystem>().Play();
             }
-            ParticleSystem[] myParticleSystem = particleObject.GetComponentsInChildren<ParticleSystem>();
-
-            particleObject.transform.position = transform.position;
-            particleObject.transform.rotation = transform.rotation;
-
-            for (int i = 0; i < myParticleSystem.Length; i++)
-            {
-                
-                myParticleSystem[i].Play();
-                Destroy(particleObject, PARTICLE_DESTROY_DELAY);
-            }
-            
+            StartCoroutine(DestroyParticleWhenFinished(particleObject));
         }
 
-        protected void SetUpRuntimeAnim()
+        IEnumerator DestroyParticleWhenFinished(GameObject particlePrefab)
         {
-            animator = GetComponent<Animator>();
-            animController = GetComponent<Character>().GetOverrideController();
-            animator.runtimeAnimatorController = animController;
+            yield return new WaitForSeconds(PARTICLE_CLEAN_UP_DELAY);
+            Destroy(particlePrefab);
+            yield return new WaitForEndOfFrame();
+        }
+
+        protected void PlayAbilityAnimation()
+        {
+            print("PlayAnim");
+            var animatorOverrideController = GetComponent<Character>().GetOverrideController();
+            var animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animatorOverrideController;
+            animatorOverrideController[DEFAULT_ATTACK_STATE] = config.GetAnimationClip();
+            animator.SetTrigger(ATTACK_TRIGGER);
         }
 
         protected void PlayAbilitySound()
@@ -64,7 +59,5 @@ namespace RPG.Characters
             var audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(abilitySound);
         }
-
     }
 }
-

@@ -12,27 +12,16 @@ namespace RPG.Characters
         [SerializeField] GameObject particlePrefab = null;
         [SerializeField] AudioClip[] audioClip = null;
         [SerializeField] AnimationClip animationClip;
-        [Header("ADVANCED")]
-        [SerializeField] float hitDelay = 1f;
-        [SerializeField] float abilityDelay = 1f;
-        [SerializeField] bool isConeAbility = false;
-        [SerializeField] Vector3 abilityLength;
-        [SerializeField] bool instantiateOnPlayer;
 
-        protected AbilityBehaviour behavior;
+        protected AbilityBehavior behavior;
 
-        public abstract AbilityBehaviour GetBehaviorComponent(GameObject gameobjectToAttachTo);
+        public abstract AbilityBehavior GetBehaviorComponent(GameObject gameobjectToAttachTo);
 
         public void AttachAbilityTo(GameObject gameObjectToattachTo)
         {
-            AbilityBehaviour behaviorComponent = GetBehaviorComponent(gameObjectToattachTo);
+            AbilityBehavior behaviorComponent = GetBehaviorComponent(gameObjectToattachTo);
             behaviorComponent.SetConfig(this);
             behavior = behaviorComponent;
-        }
-
-        public Vector3 GetAbilityLength()
-        {
-            return abilityLength;
         }
         public void Use(GameObject target)
         {
@@ -58,25 +47,6 @@ namespace RPG.Characters
         {
             animationClip.events = new AnimationEvent[0];
             return animationClip;
-        }
-
-        public float GetHitDelay()
-        {
-            return hitDelay;
-        }
-
-        public bool GetIsConeAbility()
-        {
-            return isConeAbility;
-        }
-
-        public float GetAbilityDelay()
-        {
-            return abilityDelay;
-        }
-        public bool GetInstantiateOnPlayer()
-        {
-            return instantiateOnPlayer;
         }
         
 

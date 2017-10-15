@@ -62,13 +62,13 @@ namespace RPG.Characters
 
         public void Heal(float points)
         {
+            if(healthAsPercentage <= Mathf.Epsilon)
             currentHealthPoints = Mathf.Clamp(currentHealthPoints + points, 0f, maxHealthPoints);
         }
 
 
         IEnumerator KillCharacter()
         {
-            StopAllCoroutines();
             characterMovement.kill();
             animator.SetTrigger(DEATH_TRIGGER);
 

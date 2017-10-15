@@ -22,14 +22,14 @@ namespace RPG.Characters
         [SerializeField] float colliderHight = 2.5f;
 
         [Header("Movement")]
-        [SerializeField] float stoppingDistance = 1f;
+        [SerializeField] float StoppingDistance = 1f;
         [SerializeField] float moveSpeedMultiplier = 1.2f;
         [SerializeField] float movinTurnSpeed = 360;
         [SerializeField] float stationaryTurnSpeed = 180;
         [SerializeField] float moveThreshhold = 1f;
 
         [Header("NavMeshAgent")]
-        [SerializeField] float navMeshAgentSteeringSpeed = 1f;
+        [SerializeField] float Speed = 1f;
         [SerializeField] float navMeshStoppingDistance = 3f;
         [SerializeField] float navMeshBaseOffset = 0;
 
@@ -67,7 +67,7 @@ namespace RPG.Characters
             animator.runtimeAnimatorController = animatorOverrideController;
 
             navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
-            navMeshAgent.speed = navMeshAgentSteeringSpeed;
+            navMeshAgent.speed = Speed;
             navMeshAgent.stoppingDistance = navMeshStoppingDistance;
             navMeshAgent.autoBraking = false;
             navMeshAgent.updateRotation = false;
@@ -91,6 +91,11 @@ namespace RPG.Characters
         public AnimatorOverrideController GetOverrideController()
         {
             return animatorOverrideController;
+        }
+
+        public float GetAnimationSpeedMultiplier()
+        {
+            return animator.speed;
         }
 
         public void kill()

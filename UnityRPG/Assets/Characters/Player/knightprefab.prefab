@@ -1384,7 +1384,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401785096066552}
   m_LocalRotation: {x: -0, y: -0.082618915, z: -0, w: 0.99658126}
-  m_LocalPosition: {x: -41.268, y: 0.033, z: -70.641}
+  m_LocalPosition: {x: -44.75, y: 0.033, z: -70.04}
   m_LocalScale: {x: 1.0162388, y: 1, z: 0.91813636}
   m_Children:
   - {fileID: 4854361393580694}
@@ -2187,8 +2187,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
   healthBar: {fileID: 0}
-  damageSounds: []
-  deathSounds: []
+  damageSounds:
+  - {fileID: 8300000, guid: a6fc3e350eee24f2396f2204a5e0ba31, type: 3}
+  - {fileID: 8300000, guid: b76c2b9767eb040c18bcb6a3fb3260d1, type: 3}
+  - {fileID: 8300000, guid: 44f9849d88c1b4b9a863b1c6ef105410, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 30cb15ac568754f41aa88f047f47b50a, type: 3}
+  - {fileID: 8300000, guid: af05a415f0cee4b38b38441559b353d2, type: 3}
   deathVanishSeconds: 2
 --- !u!114 &114408341019213836
 MonoBehaviour:
@@ -2202,7 +2207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  currentWeaponConfig: {fileID: 11400000, guid: 8202623bbc9f3b0459713cd1225349dd,
+  currentWeaponConfig: {fileID: 11400000, guid: 0bcb6d65f5f47bf4c85e1bcd8d89e411,
     type: 2}
   criticalHitChance: 0
   criticalHitMultiplier: 1.5
@@ -2219,8 +2224,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 11400000, guid: 3cb987cbe9d69c14ba26bbafe823d00a, type: 2}
-  - {fileID: 11400000, guid: 4bba2b7a8c33ab74e941b77cb336a579, type: 2}
-  - {fileID: 11400000, guid: d9b9278fd0878274da36b8bc3bcaa494, type: 2}
+  - {fileID: 11400000, guid: f01c03f8e7fbdb54585578c033092047, type: 2}
+  - {fileID: 11400000, guid: f01c03f8e7fbdb54585578c033092047, type: 2}
+  - {fileID: 11400000, guid: f01c03f8e7fbdb54585578c033092047, type: 2}
   energyBar: {fileID: 0}
   maxEnergyPoints: 100
   energyRegeneration: 7
@@ -2255,13 +2261,13 @@ MonoBehaviour:
   colliderCenter: {x: 0, y: 1.13, z: 0}
   colliderRadius: 0.2
   colliderHight: 2.5
-  stoppingDistance: 1
+  StoppingDistance: 1
   moveSpeedMultiplier: 1.2
   movinTurnSpeed: 1800
   stationaryTurnSpeed: 900
   moveThreshhold: 1
-  navMeshAgentSteeringSpeed: 1
-  navMeshStoppingDistance: 3
+  Speed: 1
+  navMeshStoppingDistance: 1
   navMeshBaseOffset: 0
 --- !u!137 &137066263921494062
 SkinnedMeshRenderer:

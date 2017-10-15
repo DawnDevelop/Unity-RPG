@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Name: PowerAttack_L1
   m_EditorClassIdentifier: 
   energyCost: 30
-  particlePrefab: {fileID: 109338, guid: c882138d4987a9544b7c53f14ed0ad9c, type: 2}
+  particlePrefab: {fileID: 167520, guid: f3b6bcc909e8cd2498f7c7e6191e0e98, type: 2}
   audioClip: []
-  animationClip: {fileID: 7400000, guid: f944db32bb98f9d47a10287227362423, type: 3}
-  hitDelay: 0
-  abilityDelay: 0
-  isConeAbility: 0
-  abilityLength: {x: 0, y: 0, z: 0}
-  instantiateOnPlayer: 0
+  animationClip: {fileID: 7400000, guid: 03a5f073541dc7749b0149436d3b8492, type: 3}
   extraDamage: 15

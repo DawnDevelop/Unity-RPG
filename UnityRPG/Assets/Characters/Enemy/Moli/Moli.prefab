@@ -116,7 +116,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 475570}
-  - component: {fileID: 9571274}
   m_Layer: 0
   m_Name: Moli
   m_TagString: Untagged
@@ -640,7 +639,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129258}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -36.082733, y: 0, z: -10.141663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484752}
@@ -758,23 +757,6 @@ Transform:
   m_Father: {fileID: 475570}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9571274
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129258}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 226e7f2cfd9472043b7d78e4fbdbbeae, type: 3}
-  m_Controller: {fileID: 9100000, guid: fc35835f1aee2804b8c5e68c24dd1f16, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!137 &13729250
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

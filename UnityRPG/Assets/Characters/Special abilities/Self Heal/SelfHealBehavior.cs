@@ -4,23 +4,25 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
-    public class SelfHealBehavior : AbilityBehaviour
+    public class SelfHealBehavior : AbilityBehavior
     {
 
-        // Use this for initialization
+        PlayerMovement player = null;
+
         void Start()
         {
             player = GetComponent<PlayerMovement>();
         }
 
-
         public override void Use(GameObject target)
         {
+            PlayAbilitySound();
             var playerHealth = player.GetComponent<HealthSystem>();
             playerHealth.Heal((config as SelfHealConfig).GetExtraHealth());
-            PlayAbilitySound();
-            StartCoroutine(PlayParticleEffect());
+            PlayParticleEffect();
+            PlayAbilityAnimation();
         }
     }
 }
+
 

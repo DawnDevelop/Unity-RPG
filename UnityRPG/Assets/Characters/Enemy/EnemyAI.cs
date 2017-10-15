@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RPG.Characters
 {
+    [RequireComponent(typeof(HealthSystem))]
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(WeaponSystem))]
     public class EnemyAI : MonoBehaviour
@@ -12,7 +13,8 @@ namespace RPG.Characters
         [SerializeField] float chaseRadius = 6f;
         [SerializeField] WaypointContainer patrolPath;
         [SerializeField] float waypointTolerance = 2.0f;
-
+        [SerializeField] float wayPointMoveTime = 2f;
+        GameObject target;
         PlayerMovement player = null;
         Character character;
         int nextWaypointIndex;
@@ -37,6 +39,7 @@ namespace RPG.Characters
             if (distanceToPlayer > chaseRadius && state != State.patrolling)
             {
                 StopAllCoroutines();
+                weaponSystem.StopAttacking();
                 StartCoroutine(Patrol());
             }
             if (distanceToPlayer <= chaseRadius && state != State.chasing)
@@ -48,6 +51,7 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 state = State.attacking;
+                weaponSystem.AttackTarget(player.gameObject);
             }
         }
 
@@ -55,13 +59,12 @@ namespace RPG.Characters
         {
             state = State.patrolling;
 
-            while (true)
+            while (patrolPath != null)
             {
                 Vector3 nextWaypointPos = patrolPath.transform.GetChild(nextWaypointIndex).position;
-                print(nextWaypointIndex);
                 character.SetDestination(nextWaypointPos);
                 CycleWaypointWhenClose(nextWaypointPos);
-                yield return new WaitForSeconds(0.5f); // todo parameterise
+                yield return new WaitForSeconds(wayPointMoveTime); // todo parameterise
             }
         }
 
