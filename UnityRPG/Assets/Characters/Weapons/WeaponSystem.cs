@@ -51,17 +51,19 @@ namespace RPG.Characters
 
         IEnumerator SpawnProjectile()
         {
-            yield return new WaitForSecondsRealtime(0.3f);
+            if(projectileToUse != null)
+            {
+                yield return new WaitForSecondsRealtime(0.3f);
 
-            var direction = character.transform.position - projectileSocket.transform.position;            
+                var direction = character.transform.position - projectileSocket.transform.position;
 
-            GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.LookRotation(direction));
-            newProjectile.transform.Rotate(direction.x, -90, direction.z);
-            Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
-            Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
-            newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projSpeed;
+                GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.LookRotation(direction));
+                newProjectile.transform.Rotate(direction.x, -90, direction.z);
+                Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+                Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
+                newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projSpeed;
+            }
 
-            
         }
 
         private void Update()
@@ -105,7 +107,7 @@ namespace RPG.Characters
             
             while (attackerStillAlive && targetStillAlive)
             {
-                float weaponHitPeriod = currentWeaponConfig.GetTimeBewteenHits();
+                float weaponHitPeriod = currentWeaponConfig.GetTImeBetweenAnimation();
                 float timeToWait = weaponHitPeriod * character.GetAnimationSpeedMultiplier();
 
                 bool isTimeToHitAgain = Time.time - lastHitTime > timeToWait;
@@ -154,8 +156,8 @@ namespace RPG.Characters
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
             int numberOfDominantHands = dominantHands.Length;
-            Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on Player, please add one");
-            Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on Player, please remove one");
+            Assert.IsFalse(numberOfDominantHands <= 0, "No DominantHand found on," + gameObject.name +"please add one");
+            Assert.IsFalse(numberOfDominantHands > 1, "Multiple DominantHand scripts on" + gameObject.name + "please remove one");
             return dominantHands[0].gameObject;
         }
 
@@ -164,7 +166,7 @@ namespace RPG.Characters
 
         private void AttackTarget()
         {
-            if (Time.time - lastHitTime > currentWeaponConfig.GetTimeBewteenHits())
+            if (Time.time - lastHitTime > currentWeaponConfig.GetTImeBetweenAnimation())
             {
                 SetAttackAnimation();
                 animator.SetTrigger(ATTACK_TRIGGER);

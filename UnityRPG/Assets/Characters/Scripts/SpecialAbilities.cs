@@ -89,7 +89,9 @@ namespace RPG.Characters
             else
             {
                 if(!audioSource.isPlaying)
-                audioSource.PlayOneShot(outOfEnergy);
+                {
+                    audioSource.PlayOneShot(outOfEnergy);
+                }
             }
         }
     }

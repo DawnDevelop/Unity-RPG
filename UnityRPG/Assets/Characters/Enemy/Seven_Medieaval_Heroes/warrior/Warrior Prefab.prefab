@@ -1261,7 +1261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 2
-  currentWeaponConfig: {fileID: 0}
+  currentWeaponConfig: {fileID: 11400000, guid: bb92bd71eb1b3044ea131b1a176aad24,
+    type: 2}
   criticalHitChance: 0
   criticalHitMultiplier: 1.5
   projectileToUse: {fileID: 0}
@@ -1346,12 +1347,12 @@ MonoBehaviour:
   characterAvatar: {fileID: 9000000, guid: 2cbece7f68145db40a91ef523e6f0e6d, type: 3}
   audioSourceSpatialBlend: 0.5
   colliderCenter: {x: 0, y: 1.13, z: 0}
-  colliderRadius: 1
+  colliderRadius: 0.5
   colliderHight: 2.5
   StoppingDistance: 1
   moveSpeedMultiplier: 1.2
-  movinTurnSpeed: 360
-  stationaryTurnSpeed: 180
+  movinTurnSpeed: 1040
+  stationaryTurnSpeed: 500
   moveThreshhold: 1
   Speed: 1
   navMeshStoppingDistance: 3
