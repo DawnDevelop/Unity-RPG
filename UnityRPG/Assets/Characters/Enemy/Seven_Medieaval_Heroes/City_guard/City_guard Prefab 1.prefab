@@ -876,7 +876,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1926731715471678}
   m_LocalRotation: {x: -0, y: -0.9989326, z: -0, w: -0.04619166}
-  m_LocalPosition: {x: 5.1, y: 0, z: 6.99}
+  m_LocalPosition: {x: 4.25, y: 0, z: 6.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4718243380049818}
@@ -1598,7 +1598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseRadius: 8
   patrolPath: {fileID: 0}
-  waypointTolerance: 5
+  waypointTolerance: 2
   wayPointMoveTime: 4
 --- !u!137 &137645849260390976
 SkinnedMeshRenderer:

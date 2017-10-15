@@ -17,7 +17,7 @@ namespace RPG.Characters
         [SerializeField] float additionalDamage = 10f;
         [SerializeField] float damageDelay = .5f;
 
-        public float GetTImeBetweenAnimation()
+        public float GetTimeBetweenAnimation()
         {
             return timeBetweenAnimation;
         }
