@@ -14,7 +14,7 @@ namespace RPG.Characters
         [SerializeField] AnimationClip[] attackAnimation = null;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float timeBetweenAnimation = .5f;
-        [SerializeField] float additionalDamage = 10f;
+        public float additionalDamage = 10f; //tobechanged
         [SerializeField] float damageDelay = .5f;
 
         public float GetTimeBetweenAnimation()

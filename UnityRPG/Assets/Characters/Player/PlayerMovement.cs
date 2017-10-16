@@ -17,7 +17,7 @@ namespace RPG.Characters
         EnemyAI enemy = null;
         Character character; 
         WeaponSystem weaponSystem;
-
+        TalkToNPC npc;
 
 
         void Start()
@@ -34,6 +34,12 @@ namespace RPG.Characters
             var cameraRaycaster = FindObjectOfType<CameraUI.CameraRaycaster>();
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
             cameraRaycaster.onMouseOverPotentiallyWalkable += OnMouseOverPotentiallyWalkable;
+            cameraRaycaster.onMouseOverNPC += OnMouseOverNPC;
+        }
+
+        void OnMouseOverNPC(TalkToNPC npc)
+        {
+
         }
 
         void Update()
@@ -53,8 +59,11 @@ namespace RPG.Characters
                 var animatorOverrideController = GetComponent<Character>().GetOverrideController();
                 var animator = GetComponent<Animator>();
                 animator.runtimeAnimatorController = animatorOverrideController;
+                var currentRotation = animator.bodyRotation;
+                animator.bodyRotation = Quaternion.Euler(character.transform.position);
                 animatorOverrideController["DEFAULT ATTACK"] = strafeLeftClip;
                 animator.SetTrigger("Attack");
+                animator.bodyRotation = currentRotation;
             }
             else if(Input.GetKeyDown("d"))
             {

@@ -8,9 +8,11 @@ namespace RPG.Characters
     {
         [SerializeField] float projectileSpeed;
         [SerializeField] GameObject shooter; // So can inspected when paused
+        [SerializeField] float damage = 5f;
 
         const float DESTROY_DELAY = 0.01f;
         float damageCaused;
+        HealthSystem healthSystem;
 
         public void SetShooter(GameObject shooter)
         {
@@ -31,6 +33,8 @@ namespace RPG.Characters
         {
             if(other.GetComponent<PlayerMovement>())
             {
+                healthSystem = other.GetComponent<HealthSystem>();
+                healthSystem.TakeDamage(damage);
                 Destroy(gameObject);
             }
             else

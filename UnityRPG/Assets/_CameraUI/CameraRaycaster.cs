@@ -11,7 +11,7 @@ namespace RPG.CameraUI
     {
         [SerializeField] Texture2D walkCursor = null;
         [SerializeField] Texture2D targetCursor = null;
-
+        [SerializeField] Texture2D NPCCursor;
         [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 
         const int POTENTIALLY_WALKABLE_LAYER = 8;
@@ -27,6 +27,9 @@ namespace RPG.CameraUI
 
         public delegate void OnMouseOverEnemy(EnemyAI enemy);
         public event OnMouseOverEnemy onMouseOverEnemy;
+
+        public delegate void OnMouseOverNPC(TalkToNPC npc);
+        public event OnMouseOverNPC onMouseOverNPC;
 
         void Update()
         {
@@ -49,6 +52,7 @@ namespace RPG.CameraUI
                 //Specify layer priorities here
 
                 if (RaycastForEnemy(ray)) { return; }
+                if (RacastForNPC(ray)) { return; }
                 if (RaycastForPotentiallyWalkable(ray)) { return; }
             //}
             
@@ -78,10 +82,27 @@ namespace RPG.CameraUI
             {
                 Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
                 onMouseOverPotentiallyWalkable(hitInfo.point);
-                return false;
+                return true;
             }
             return false;
             
+        }
+
+        private bool RacastForNPC(Ray ray)
+        {
+            RaycastHit hitInfo;
+            Physics.Raycast(ray, out hitInfo, maxRaycastDepth);
+            var gameobjectHit = hitInfo.collider.gameObject;
+            var NPCHit = gameobjectHit.GetComponent<TalkToNPC>();
+            if (NPCHit)
+            {
+                print(gameobjectHit.name);
+                Cursor.SetCursor(NPCCursor, cursorHotspot, CursorMode.Auto);
+                onMouseOverNPC(NPCHit);
+                return true;
+            }
+            return false;
+
         }
     }
 }
