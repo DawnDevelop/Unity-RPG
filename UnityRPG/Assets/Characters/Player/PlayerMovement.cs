@@ -54,7 +54,7 @@ namespace RPG.Characters
 
         private void ScanForAorDKey()
         {
-            if(Input.GetKeyDown("a"))
+            if(Input.GetKeyDown("w"))
             {
                 var animatorOverrideController = GetComponent<Character>().GetOverrideController();
                 var animator = GetComponent<Animator>();
@@ -65,7 +65,7 @@ namespace RPG.Characters
                 animator.SetTrigger("Attack");
                 animator.bodyRotation = currentRotation;
             }
-            else if(Input.GetKeyDown("d"))
+            else if(Input.GetKeyDown("s"))
             {
                 var animatorOverrideController = GetComponent<Character>().GetOverrideController();
                 var animator = GetComponent<Animator>();

@@ -20,7 +20,7 @@ public class BrightenLight : MonoBehaviour {
     {
         lightToSwitch.intensity = 1;
         lightToSwitch.range = 1;
-        lightToSwitch.color = new Color(0.28f,0.17f,0.76f,1);
-        RenderSettings.ambientIntensity = 1.5f;
+        lightToSwitch.color = new Color(0f,0f,0f,1);
+        RenderSettings.ambientIntensity = 1f;
     }
 }
