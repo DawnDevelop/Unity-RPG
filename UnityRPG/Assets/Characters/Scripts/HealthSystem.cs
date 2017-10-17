@@ -24,6 +24,7 @@ namespace RPG.Characters
         Animator animator;
         AudioSource audioSource;
         Character characterMovement;
+        WeaponSystem weaponSystem;
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
@@ -55,6 +56,7 @@ namespace RPG.Characters
 
             var clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
             audioSource.PlayOneShot(clip);
+
             if (characterDies)
             {
                 StartCoroutine(KillCharacter());

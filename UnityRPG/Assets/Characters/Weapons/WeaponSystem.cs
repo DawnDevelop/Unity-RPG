@@ -66,6 +66,11 @@ namespace RPG.Characters
 
         }
 
+        public GameObject GetProjectileInUse()
+        {
+            return projectileToUse;
+        }
+
         private void Update()
         {
             bool targetIsDead;
@@ -139,6 +144,7 @@ namespace RPG.Characters
 
             yield return new WaitForSecondsRealtime(damageDelay);
 
+            if(projectileToUse == null)
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
         }
 
