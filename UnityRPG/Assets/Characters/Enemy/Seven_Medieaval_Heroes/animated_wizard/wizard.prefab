@@ -1067,6 +1067,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1971926103383944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4118293453774640}
+  m_Layer: 9
+  m_Name: ProjSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1972311070491568
 GameObject:
   m_ObjectHideFlags: 1
@@ -1240,6 +1255,19 @@ Transform:
   m_Father: {fileID: 4304009760941742}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4118293453774640
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971926103383944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.149, y: 0.941, z: 0.557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4169599850099052}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4124181458668290
 Transform:
   m_ObjectHideFlags: 1
@@ -1325,16 +1353,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378515221656672}
-  m_LocalRotation: {x: -0, y: -0.99694836, z: -0, w: 0.07806409}
-  m_LocalPosition: {x: -49.05, y: 0, z: -10.17}
-  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_LocalRotation: {x: -0, y: -0.9844086, z: -0, w: -0.17589709}
+  m_LocalPosition: {x: -26.479599, y: 0, z: 122.999374}
+  m_LocalScale: {x: 1.7124267, y: 1.7124268, z: 1.7124271}
   m_Children:
   - {fileID: 4181482022621372}
   - {fileID: 4288210212707924}
   - {fileID: 224776099129582666}
+  - {fileID: 4118293453774640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -171.04501, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -200.262, z: 0}
 --- !u!4 &4181482022621372
 Transform:
   m_ObjectHideFlags: 1
@@ -2341,14 +2370,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  currentWeaponConfig: {fileID: 11400000, guid: c0b65ff56c5d96c44832d50db352356d,
+  currentWeaponConfig: {fileID: 11400000, guid: c3769fa434144e1428be8eab10e62079,
     type: 2}
   criticalHitChance: 0
   criticalHitMultiplier: 1.5
-  projectileToUse: {fileID: 0}
-  projectileSocket: {fileID: 0}
+  projectileToUse:
+  - {fileID: 1436447386774278, guid: b36e5394bf3902b41877ecba9aa55b8d, type: 2}
+  - {fileID: 1601494591900918, guid: 61ee9554f7c3b03408fc8258477fddf5, type: 2}
+  projectileSocket: {fileID: 1971926103383944}
   aimOffset: {x: 0, y: 1, z: 0}
-  projSpeed: 1
+  projSpeed: 10
   projRotate: {x: 0, y: 0, z: 0}
 --- !u!114 &114169099034530736
 MonoBehaviour:
@@ -2455,7 +2486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseRadius: 6
   patrolPath: {fileID: 0}
-  waypointTolerance: 2
+  positionTolerance: 2
   wayPointMoveTime: 2
 --- !u!114 &114893791083561394
 MonoBehaviour:
@@ -2492,13 +2523,13 @@ MonoBehaviour:
   colliderCenter: {x: 0, y: 1.13, z: 0}
   colliderRadius: 0.5
   colliderHight: 2.5
-  StoppingDistance: 1
+  StoppingDistance: 5
   moveSpeedMultiplier: 1.2
   movinTurnSpeed: 1000
   stationaryTurnSpeed: 500
   moveThreshhold: 1
   Speed: 1
-  navMeshStoppingDistance: 1.5
+  navMeshStoppingDistance: 5
   navMeshBaseOffset: 0
 --- !u!137 &137088222637079470
 SkinnedMeshRenderer:

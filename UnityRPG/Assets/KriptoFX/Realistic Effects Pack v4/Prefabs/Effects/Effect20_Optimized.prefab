@@ -4471,37 +4471,43 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 7.0203147
-      outSlope: 7.0203147
-      tangentMode: 0
+      time: 0.03730342
+      value: 1.0001032
+      inSlope: 0
+      outSlope: -0
+      tangentMode: 1
     - serializedVersion: 2
-      time: 0.061838463
-      value: 0.9978678
-      inSlope: -0.038008716
-      outSlope: -0.038008716
-      tangentMode: 0
+      time: 0.34930962
+      value: 1.0977665
+      inSlope: -0.43720007
+      outSlope: -0.43720007
+      tangentMode: 1
     - serializedVersion: 2
-      time: 0.23835821
-      value: 0.4172902
-      inSlope: -1.6209341
-      outSlope: -1.6209341
-      tangentMode: 0
+      time: 0.47165155
+      value: 1.1188608
+      inSlope: 0.8569658
+      outSlope: 0.8569658
+      tangentMode: 1
     - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: -0.15367037
-      outSlope: -0.15367037
+      time: 0.89866054
+      value: 1.0322504
+      inSlope: -0.3944241
+      outSlope: 0.005364418
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.0108747
+      value: 0.99752784
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  Duration: 3
-  Speed: 17
+  Duration: 1
+  Speed: 15
   Magnitude: 2
-  DistanceForce: 100
-  RotationDamper: 3
+  DistanceForce: 20
+  RotationDamper: 10
   IsEnabled: 1
   canUpdate: 0
 --- !u!114 &114937276845826538

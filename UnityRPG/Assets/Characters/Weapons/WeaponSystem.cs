@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+
 namespace RPG.Characters 
 {
     public class WeaponSystem : MonoBehaviour
@@ -15,7 +16,7 @@ namespace RPG.Characters
         [SerializeField] float criticalHitMultiplier = 1.5f;
 
         [Header("Projectile wenn vorhanden")]
-        [SerializeField] GameObject projectileToUse;
+        [SerializeField] GameObject[] projectileToUse;
         [SerializeField] GameObject projectileSocket;
         [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
         [SerializeField] float projSpeed = 1f;
@@ -57,7 +58,7 @@ namespace RPG.Characters
 
                 var direction = character.transform.position - projectileSocket.transform.position;
 
-                GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.LookRotation(direction));
+                GameObject newProjectile = Instantiate(projectileToUse[UnityEngine.Random.Range(0, projectileToUse.Length)], projectileSocket.transform.position, Quaternion.LookRotation(direction));
                 newProjectile.transform.Rotate(direction.x, -90, direction.z);
                 Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
                 Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
@@ -68,7 +69,7 @@ namespace RPG.Characters
 
         public GameObject GetProjectileInUse()
         {
-            return projectileToUse;
+            return projectileToUse[UnityEngine.Random.Range(0, projectileToUse.Length)];
         }
 
         private void Update()

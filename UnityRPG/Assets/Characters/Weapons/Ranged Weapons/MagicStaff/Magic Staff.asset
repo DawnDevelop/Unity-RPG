@@ -22,6 +22,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: dafa7e8bcf1bfa24a8c53ec17164800e, type: 3}
   - {fileID: 7400000, guid: 2a9f95a324017234aad9ca87272db7bf, type: 3}
   maxAttackRange: 6
-  timeBetweenAnimation: 0.5
+  timeBetweenAnimation: 2
   additionalDamage: 0
   damageDelay: 0.5
