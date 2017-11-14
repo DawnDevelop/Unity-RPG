@@ -26,7 +26,7 @@ Capsule collider sind die Hitbox Einstellungen
 
 # 1.4 Movement:
 Stopping distance:
-ist die distance die der character zum spieler einhält.
+ist die distance die der character zum geklickten cursorpunkt einhält.
 
 MoveSpeed multiplier:
 meist auf wert 1.2 gelassen, hab festgestellt das es am besten passt. Was genau das ist kann man rumprobieren.(Hat was damit zu tun wie schnell er von 0 auf 100 kommt sozusagen :D    )
